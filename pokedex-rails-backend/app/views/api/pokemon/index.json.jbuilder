@@ -15,7 +15,12 @@
 
 @pokemon.each do |poke|
     json.set! poke.id do
-      json.extract! poke, :number, :name, :image_url, :captured
+      json.extract! poke, :number, :name, :captured
+      if poke.captured == true
+        json.extract! poke, :image_url
+      else
+        json.image_url = "/images/unknown.png"
+      end
     end
 end
   
